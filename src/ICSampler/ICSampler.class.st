@@ -3,7 +3,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'samples',
-		'allMethods'
+		'allMethods',
+		'gcs'
 	],
 	#category : #ICSampler
 }
@@ -120,13 +121,21 @@ ICSampler >> sample: aBlock frequency: aFrequency per: aDuration [
 { #category : #'as yet unclassified' }
 ICSampler >> sample: aBlock period: aDuration [
 
-	| finished |
+	| finished before |
 	finished := false.
+	"Pre fetch the methods, clean the VM state"
+	self allMethods.
+	Smalltalk vm voidCogVMState.
+	"Run a GC, because the full GC will unlink all callsites, affecting all our measures"
+	Smalltalk garbageCollect.
+	before := Smalltalk vm fullGCCount.
+	
 	[ 
 	[ finished ] whileFalse: [ 
 		self sample.
 		aDuration wait ] ] forkAt: Processor activePriority + 1.
 	aBlock value.
+	gcs := Smalltalk vm fullGCCount - before.
 	finished := true.
 ]
 
