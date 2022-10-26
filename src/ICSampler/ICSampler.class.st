@@ -136,6 +136,7 @@ ICSampler >> sample: aBlock period: aDuration [
 		aDuration wait ] ] forkAt: Processor activePriority + 1.
 	aBlock value.
 	gcs := Smalltalk vm fullGCCount - before.
+	gcs > 0 ifTrue: [ self error: 'Invalid measures due to GC' ].
 	finished := true.
 ]
 
