@@ -6,7 +6,7 @@ Class {
 		'xray',
 		'callSiteInformation'
 	],
-	#category : 'ICSampler'
+	#category : #ICSampler
 }
 
 { #category : #accessing }
@@ -25,7 +25,10 @@ ICMethodSample >> callSiteInformation: anObject [
 ICMethodSample >> callsites [
 
 	^ callSiteInformation collect: [ :callsite | 
-		  ICCallsiteInformation new rawCallsiteInformation: callsite ]
+		  ICCallsiteInformation new
+			  owner: method;
+			  rawCallsiteInformation: callsite;
+			  yourself ]
 ]
 
 { #category : #testing }
