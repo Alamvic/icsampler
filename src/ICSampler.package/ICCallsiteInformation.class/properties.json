@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "ICSampler",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"rawCallsiteInformation"
+	],
+	"name" : "ICCallsiteInformation",
+	"type" : "normal"
+}

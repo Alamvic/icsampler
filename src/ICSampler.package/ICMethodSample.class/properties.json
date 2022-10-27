@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "ICSampler",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"method",
+		"xray",
+		"callSiteInformation"
+	],
+	"name" : "ICMethodSample",
+	"type" : "normal"
+}

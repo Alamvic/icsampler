@@ -1,0 +1,4 @@
+testing
+hasCallsiteInformation
+	
+	^ callSiteInformation notEmpty

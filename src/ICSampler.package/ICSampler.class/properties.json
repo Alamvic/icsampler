@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "ICSampler",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"samples",
+		"allMethods",
+		"gcs"
+	],
+	"name" : "ICSampler",
+	"type" : "normal"
+}
