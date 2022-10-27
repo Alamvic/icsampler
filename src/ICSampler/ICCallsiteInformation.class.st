@@ -8,6 +8,12 @@ Class {
 	#category : #ICSampler
 }
 
+{ #category : #accessing }
+ICCallsiteInformation >> astNode [
+	
+	^ owner sourceNodeForPC: rawCallsiteInformation first
+]
+
 { #category : #testing }
 ICCallsiteInformation >> kind [
 	
