@@ -1,4 +1,0 @@
-accessing
-package
-	
-	^ method package
