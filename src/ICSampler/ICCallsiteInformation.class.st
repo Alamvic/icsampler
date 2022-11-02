@@ -53,6 +53,14 @@ ICCallsiteInformation >> owner: aMethod [
 	owner := aMethod
 ]
 
+{ #category : #query }
+ICCallsiteInformation >> percentageOfUniqueEntries [
+	
+	| allEntries |
+	allEntries := rawCallsiteInformation select: [ :e | e isCompiledMethod ].
+	^ allEntries asIdentitySet size / allEntries size
+]
+
 { #category : #accessing }
 ICCallsiteInformation >> rawCallsiteInformation: aCollection [ 
 	rawCallsiteInformation := aCollection
