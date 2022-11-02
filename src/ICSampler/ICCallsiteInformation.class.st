@@ -28,12 +28,23 @@ ICCallsiteInformation >> astNode [
 		  astNode ]
 ]
 
+{ #category : #accessing }
+ICCallsiteInformation >> bytecodePC [
+	
+	^ rawCallsiteInformation first
+]
+
 { #category : #testing }
 ICCallsiteInformation >> kind [
 	
 	rawCallsiteInformation size > 3 ifTrue: [ ^ #polymorphic ].
 	rawCallsiteInformation second ifNil: [ ^ #megamorphic ].
 	^ #monomorphic
+]
+
+{ #category : #accessing }
+ICCallsiteInformation >> owner [
+	^ owner
 ]
 
 { #category : #accessing }
@@ -51,5 +62,5 @@ ICCallsiteInformation >> rawCallsiteInformation: aCollection [
 ICCallsiteInformation >> resetASTNode [
 	
 	astNode := nil.
-	"owner := owner methodClass >> owner selector"
+	owner := owner methodClass >> owner selector
 ]

@@ -67,6 +67,7 @@ ICMethodSample >> isEmpty [
 { #category : #testing }
 ICMethodSample >> isInPackage: aRPackage [ 
 	
+	method methodClass ifNil: [ ^ false ].
 	^ method methodClass package = aRPackage
 ]
 

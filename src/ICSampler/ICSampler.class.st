@@ -90,11 +90,40 @@ ICSampler >> compiledSamplePercentage [
 			asFloat ]
 ]
 
+{ #category : #query }
+ICSampler >> historyOfCallsite: anICCallsiteInformation [
+
+	^ samples collect: [ :sample | 
+		  | methodSample |
+		  methodSample := sample at: anICCallsiteInformation owner.
+		  methodSample callSiteInformation
+			  detect: [ :onecallsite | 
+				  onecallsite first = anICCallsiteInformation bytecodePC ]
+			  ifNone: [ nil ] ]
+]
+
+{ #category : #query }
+ICSampler >> historyOfMethod: aCollection [ 
+	self shouldBeImplemented.
+]
+
 { #category : #'as yet unclassified' }
 ICSampler >> initialize [
 
 	super initialize.
 	samples := OrderedCollection new
+]
+
+{ #category : #history }
+ICSampler >> megamorphicCallsiteHistory [
+	
+	| callsiteTypeCountPerSamples megamorphicCallsites |
+	callsiteTypeCountPerSamples := self callsiteTypeCount.
+	megamorphicCallsites := callsiteTypeCountPerSamples last at: 7 "megamorphic threshold".
+	
+	^ megamorphicCallsites collect: [ :callsite |
+		self historyOfCallsite: callsite
+	]
 ]
 
 { #category : #filtering }
