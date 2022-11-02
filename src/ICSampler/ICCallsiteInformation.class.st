@@ -51,5 +51,5 @@ ICCallsiteInformation >> rawCallsiteInformation: aCollection [
 ICCallsiteInformation >> resetASTNode [
 	
 	astNode := nil.
-	owner := owner methodClass >> owner selector
+	"owner := owner methodClass >> owner selector"
 ]
