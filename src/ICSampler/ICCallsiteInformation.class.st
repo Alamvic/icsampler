@@ -3,15 +3,29 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'rawCallsiteInformation',
-		'owner'
+		'owner',
+		'astNode'
 	],
 	#category : #ICSampler
 }
 
+{ #category : #testing }
+ICCallsiteInformation >> arity [
+	
+	rawCallsiteInformation size > 3 ifTrue: [
+		^ rawCallsiteInformation size - 1 / 2 ].
+	rawCallsiteInformation second ifNil: [ ^ 7 "more than 6"].
+	^ 1
+]
+
 { #category : #accessing }
 ICCallsiteInformation >> astNode [
-	
-	^ owner sourceNodeForPC: rawCallsiteInformation first
+
+	^ astNode ifNil: [ 
+		  astNode := owner sourceNodeForPC: rawCallsiteInformation first.
+		  astNode isMessage ifFalse: [ "ignore if not a message send... Slots, FFI methods..." 
+			  ^ nil ].
+		  astNode ]
 ]
 
 { #category : #testing }
@@ -31,4 +45,11 @@ ICCallsiteInformation >> owner: aMethod [
 { #category : #accessing }
 ICCallsiteInformation >> rawCallsiteInformation: aCollection [ 
 	rawCallsiteInformation := aCollection
+]
+
+{ #category : #resetting }
+ICCallsiteInformation >> resetASTNode [
+	
+	astNode := nil.
+	owner := owner methodClass >> owner selector
 ]

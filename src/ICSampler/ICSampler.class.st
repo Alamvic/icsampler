@@ -6,7 +6,7 @@ Class {
 		'allMethods',
 		'gcs'
 	],
-	#category : 'ICSampler'
+	#category : #ICSampler
 }
 
 { #category : #'ston-core' }
@@ -38,7 +38,7 @@ ICSampler >> callsiteTypeCount [
 
 	^ samples collect: [ :sample | 
 		  (self sampleCallsiteCount: sample) groupedBy: [ :callsite | 
-			  callsite kind ] ]
+			  callsite arity ] ]
 ]
 
 { #category : #query }
